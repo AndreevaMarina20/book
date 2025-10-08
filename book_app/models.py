@@ -7,7 +7,7 @@ class Author(models.Model):
     bio = models.TextField("Биография")
 
     def __str__(self):
-        return f"{self.surname} {self.first_name}" 
+        return f"{self.first_name} {self.surname}" 
 
     class Meta:
         verbose_name = "Автор"
@@ -32,21 +32,29 @@ class User(models.Model):
     phone_number = models.CharField('Номер телефона', max_length=20) 
 
     def __str__(self):
-        return f"{self.email}"
+        return f"{self.first_name} {self.last_name}"
     
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 
 class Order(models.Model):
+    ST=[
+        ("Собран","Собран"),
+        ("Собираем","Собираем"),
+        ("Курьер в пути","Курьер в пути"),
+        ("Доставлен","Достален")
+    ]
+
     order_date = models.DateField('Дата заказа')
     total_amount = models.DecimalField('Общая сумма заказа', max_digits=10, decimal_places=2)  
-    status = models.CharField('Статус заказа', max_length=100)
+    status = models.CharField('Статус заказа', max_length=100, choices=ST)
     delivery_address = models.CharField('Адрес доставки', max_length=500)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', default=0)  
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', default=0) 
+    order_detail = models.ManyToManyField('OrderDetail', verbose_name='Детали заказа', related_name='order_relation') 
 
     def __str__(self):
-        return f"Заказ #{self.id} - {self.delivery_address}"  
+        return f"Заказ #{self.id} - {self.user}"  
     
     class Meta:
         verbose_name = 'Заказ'
@@ -75,7 +83,7 @@ class OrderDetail(models.Model):
     unit_price = models.DecimalField('Цена за позицию', max_digits=8, decimal_places=2)  
 
     def __str__(self):
-        return f"Детали заказа #{self.order.id}"  
+        return f"Детали заказа #{self.order.id} {self.order}"  
 
     class Meta:
         verbose_name = 'Детали заказа'
