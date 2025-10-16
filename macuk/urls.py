@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from book_app.views import kkk
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('Главная', kkk)
 ]
