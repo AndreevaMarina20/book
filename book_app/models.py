@@ -67,6 +67,7 @@ class Book(models.Model):
     description = models.TextField('Описание')  
     author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='Автор', default=0) 
     genres = models.ManyToManyField(Genre, verbose_name='Жанры') 
+    photo = models.ImageField(upload_to='books/', blank=True, null=True)
 
     def __str__(self):
         return f"{self.title}"

@@ -1,5 +1,6 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-{%block head%}
 <header>
     <nav>
         <section>
@@ -25,4 +26,7 @@
         </aside>
     </nav>
 </header>
-{%endblock%}
+
+{% block main %}
+
+{% endblock %}
