@@ -2,8 +2,8 @@ from django.db import models
 
 class Author(models.Model):
     first_name = models.CharField('Имя автора', max_length=20)
+    birthday = models.DateField(null=True, blank=True)
     surname = models.CharField("Фамилия", max_length=25)
-    birthday = models.DateField("Дата рождения")
     bio = models.TextField("Биография")
 
     def __str__(self):

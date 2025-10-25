@@ -2,28 +2,19 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 <header>
-    <nav>
-        <section>
+    <nav class="nav-container">
+        <div class="logo">
             <h1>BOOKCAT</h1>
-        </section>
-
-        <section class="main-nav">
-                <a href="#">Главная</a>
-                <a href="#">Каталог</a>
+        </div>
+        <div class="nav-links">
+            <a href="#">Главная</a>
+            <a href="#">Каталог</a>
+            <div class="search-item">
                 <a href="#">Поиск</a>
-            </section>
-        
-        <aside>
-            <form>
-                <label>
-                    <input type="search" placeholder="Поиск книг...">
-                </label>
-            </form>
-                
-            <figure>
-                <button>Войти</button>
-            </figure>
-        </aside>
+                <input type="text" placeholder="Поиск книг..." class="search-input">
+            </div>
+        </div>
+        <button class="login-btn">ВОЙТИ</button>
     </nav>
 </header>
 
