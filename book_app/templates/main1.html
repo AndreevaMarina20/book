@@ -10,10 +10,6 @@
         <label><input type="checkbox"> Детективы</label>
         <label><input type="checkbox"> Романы</label>
     </div>
-    <div class="filter-group">
-        <h3>Цена</h3>
-        <input type="range" min="0" max="5000" value="2500">
-    </div>
 </div>
 
 <div class="category-section">
@@ -26,7 +22,7 @@
             {% else %}
                 <div class="product-image">📖</div>
             {% endif %}
-            <h3><a href="#">{{ book.title }}</a></h3>
+            <h3><a href="{% url 'main2' book.id %}">{{ book.title }}</a></h3>
             <p class="author">
                 {{ book.author.first_name }} {{ book.author.surname }}
             </p>

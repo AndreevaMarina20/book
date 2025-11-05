@@ -7,8 +7,19 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
     background: #1A1A1A;
     color: white;
+    font-family: Arial, sans-serif;
+}
+
+main {
+    flex: 1 0 auto;
+    padding-top: 80px;
 }
 
 /* Header стили */
@@ -24,14 +35,13 @@ header {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Основной контент - добавляем отступ сверху */
 body {
-    padding-top: 80px; /* Высота header + отступ */
+    padding-top: 80px; 
 }
 
-/* Или если хотите только для main */
+
 main {
-    padding-top: 20px; /* Дополнительный отступ */
+    padding-top: 20px; 
 }
 
 .nav-container {
@@ -141,7 +151,7 @@ main {
 }
 
 .product-card {
-    background: #2c3e50;
+    background: #222222;
     border: 2px solid white;
     border-radius: 15px;
     padding: 20px;
@@ -221,7 +231,8 @@ footer {
     background: #252525;
     color: white;
     padding: 30px 0;
-    margin-top: 50px;
+    flex-shrink: 0;
+    margin-top: auto;
 }
 
 .footer-content {
@@ -293,4 +304,156 @@ footer {
     .nav-links a {
         margin-right: 0;
     }
+}
+
+/* main2.html */
+.book-detail {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.book-main {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.book-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-image {
+    width: 100%;
+    height: 350px; 
+    object-fit: cover;
+    border-radius: 15px;
+    border: 2px solid white;
+}
+
+.detail-image-placeholder {
+    width: 100%;
+    height: 350px; 
+    background: #2c3e50;
+    border: 2px solid white;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px; 
+}
+
+.book-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.book-right h1 {
+    color: white;
+    font-size: 32px;
+    margin: 0;
+    text-align: left;
+}
+
+.book-right .author {
+    color: #bdc3c7;
+    font-size: 18px;
+    margin: 0;
+    text-align: left;
+}
+
+.book-right .price {
+    font-size: 28px;
+    color: #e74c3c;
+    font-weight: bold;
+    margin: 0;
+    text-align: left;
+}
+
+.book-description {
+    background: #2c3e50;
+    padding: 25px;
+    border-radius: 15px;
+    border: 2px solid white;
+    text-align: justify; 
+}
+
+.book-description h2 {
+    color: white;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.book-description p {
+    color: #bdc3c7;
+    line-height: 1.6;
+    font-size: 16px;
+    text-align: justify;
+    margin: 0;
+}
+
+.book-meta {
+    color: white;
+    line-height: 1.6;
+    text-align: left;
+    font-size: 16px;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.cart-btn-large {
+    background: black;
+    color: white;
+    border: 2px solid white;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.cart-btn-large:hover {
+    background: #333;
+}
+
+.wishlist-btn {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex: 1;
+}
+
+.wishlist-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.back-link {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-btn {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 25px;
+    transition: all 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
 }

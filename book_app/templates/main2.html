@@ -1,87 +1,39 @@
-{% extends 'head.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
-{%block main%}
-<div class="filters">
-    <div class="filter-group">
-        <h3>Категории</h3>
-        <label><input type="checkbox"> Художественная литература</label>
-        <label><input type="checkbox"> Фантастика</label>
-        <label><input type="checkbox"> Детективы</label>
-        <label><input type="checkbox"> Романы</label>
-    </div>
-    <div class="filter-group">
-        <h3>Цена</h3>
-        <input type="range" min="0" max="5000" value="2500">
-    </div>
-</div>
-
-<div class="category-section">
-    <h2 class="category-title">📚 Художественная литература</h2>
-    <div class="products-grid">
-        <div class="product-card">
-            <div class="product-image">📖</div>
-            <h3><a href="product1.html">Мастер и Маргарита</a></h3>
-            <p class="author">Михаил Булгаков</p>
-            <p class="price">899 ₽</p>
-            <button class="cart-btn">В корзину</button>
+{% block content %}
+<div class="book-detail">
+    <div class="book-main">
+        <div class="book-image">
+            {% if book.photo %}
+                <img src="{{ book.photo.url }}" alt="{{ book.title }}" class="detail-image">
+            {% else %}
+                <div class="detail-image-placeholder">📖</div>
+            {% endif %}
         </div>
-
-        <div class="product-card">
-            <div class="product-image">📘</div>
-            <h3><a href="product3.html">Преступление и наказание</a></h3>
-            <p class="author">Фёдор Достоевский</p>
-            <p class="price">699 ₽</p>
-            <button class="cart-btn">В корзину</button>
-        </div>
-
-        <div class="product-card">
-            <div class="product-image">📗</div>
-            <h3><a href="product4.html">Маленький принц</a></h3>
-            <p class="author">Антуан де Сент-Экзюпери</p>
-            <p class="price">459 ₽</p>
-            <button class="cart-btn">В корзину</button>
-        </div>
-
-        <div class="product-card">
-            <div class="product-image">📕</div>
-            <h3><a href="product6.html">Война и мир</a></h3>
-            <p class="author">Лев Толстой</p>
-            <p class="price">999 ₽</p>
-            <button class="cart-btn">В корзину</button>
+        
+        <div class="book-info">
+            <h1>{{ book.title }}</h1>
+            <p class="author">Автор: {{ book.author.first_name }} {{ book.author.surname }}</p>
+            <p class="price">{{ book.price }} ₽</p>
+            
+            <div class="actions">
+                <button class="cart-btn-large">Добавить в корзину</button>
+            </div>
+            
+            <div class="book-meta">
+                {% if book.publication_date %}
+                    <p><strong>Год издания:</strong> {{ book.publication_date.year }}</p>
+                {% endif %}
+                {% if book.description %}
+                    <p><strong>Описание:</strong> {{ book.description }}</p>
+                {% endif %}
+            </div>
         </div>
     </div>
-</div>
-
-<hr class="divider">
-
-<div class="category-section">
-    <h2 class="category-title">🚀 Фантастика</h2>
-    <div class="products-grid">
-        <div class="product-card">
-            <div class="product-image">📚</div>
-            <h3><a href="product2.html">1984</a></h3>
-            <p class="author">Джордж Оруэлл</p>
-            <p class="price">759 ₽</p>
-            <button class="cart-btn">В корзину</button>
-        </div>
-
-        <div class="product-card">
-            <div class="product-image">📙</div>
-            <h3><a href="product5.html">Гарри Поттер и философский камень</a></h3>
-            <p class="author">Джоан Роулинг</p>
-            <p class="price">1299 ₽</p>
-            <button class="cart-btn">В корзину</button>
-        </div>
+    
+    <div class="back-link">
+        <a href="{% url 'main' %}" class="back-btn">← Назад к каталогу</a>
     </div>
-</div>
-
-<div class="pagination">
-    <a href="#" class="page-link active">1</a>
-    <a href="page2.html" class="page-link">2</a>
-    <a href="page3.html" class="page-link">3</a>
-    <a href="page4.html" class="page-link">4</a>
-    <a href="page5.html" class="page-link">5</a>
-    <a href="page2.html" class="page-link next">→</a>
 </div>
 {% endblock %}

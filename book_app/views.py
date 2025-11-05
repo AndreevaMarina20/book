@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Book
 
 def main_page(request):
@@ -6,3 +6,9 @@ def main_page(request):
     
     context = {'books': books}
     return render(request, 'main1.html', context)
+
+def book_detail(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+
+    context = {'book': book}
+    return render(request, 'main2.html', context)

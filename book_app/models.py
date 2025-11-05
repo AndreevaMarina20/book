@@ -61,12 +61,20 @@ class Order(models.Model):
         verbose_name_plural = 'Заказы'
 
 class Book(models.Model):
+    ST=[
+        ("Художественная литература","Художественная литература"),
+        ("Фантастика","Фантастика"),
+        ("Детективы","Детективы"),
+        ("Романы","Романы")
+    ]
+
     title = models.CharField('Название книги', max_length=500)
     publication_date = models.DateField('Дата выпуска')
     price = models.DecimalField('Цена книги', max_digits=8, decimal_places=2)  
     description = models.TextField('Описание')  
     author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='Автор', default=0) 
     genres = models.ManyToManyField(Genre, verbose_name='Жанры') 
+    category = models.CharField('Категории', max_length=100, choices=ST)
     photo = models.ImageField(upload_to='books/', blank=True, null=True)
 
     def __str__(self):
