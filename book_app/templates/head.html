@@ -7,11 +7,14 @@
             <h1>BOOKCAT</h1>
         </div>
         <div class="nav-links">
-            <a href="#">Главная</a>
-            <a href="#">Каталог</a>
+            <a href="{% url 'main' %}">Главная</a>
+            <a href="{% url 'cart' %}">Корзина</a>
             <div class="search-item">
-                <a href="#">Поиск</a>
-                <input type="text" placeholder="Поиск книг..." class="search-input">
+                <form method="get" action="{% url 'main' %}" class="header-search-form">
+                    <input type="text" name="search" placeholder="Поиск книг..." class="search-input" 
+                           value="{{ request.GET.search }}">
+                    <button type="submit" class="search-icon-btn">🔍</button>
+                </form>
             </div>
         </div>
         <button class="login-btn">ВОЙТИ</button>

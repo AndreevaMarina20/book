@@ -5,15 +5,32 @@
 <div class="filters">
     <div class="filter-group">
         <h3>Категории</h3>
-        <label><input type="checkbox"> Художественная литература</label>
-        <label><input type="checkbox"> Фантастика</label>
-        <label><input type="checkbox"> Детективы</label>
-        <label><input type="checkbox"> Романы</label>
+        <div class="category-buttons">
+            <a href="{% url 'main' %}" class="category-btn {% if not selected_category %}active{% endif %}">
+                Все книги
+            </a>
+            {% for category_key, category_name in categories %}
+            <a href="{% url 'main' %}?category={{ category_key }}" 
+               class="category-btn {% if selected_category == category_key %}active{% endif %}">
+                {{ category_name }}
+            </a>
+            {% endfor %}
+        </div>
     </div>
 </div>
 
 <div class="category-section">
-    <h2 class="category-title">📚 Все книги</h2>
+    <h2 class="category-title">
+        {% if selected_category %}
+            📚 {{ selected_category }}
+        {% elif search_query %}
+            🔍 Результаты поиска: "{{ search_query }}"
+        {% else %}
+            📚 Все книги
+        {% endif %}
+        <span class="book-count">({{ books|length }})</span>
+    </h2>
+    
     <div class="products-grid">
         {% for book in books %}
         <div class="product-card">
@@ -23,15 +40,16 @@
                 <div class="product-image">📖</div>
             {% endif %}
             <h3><a href="{% url 'main2' book.id %}">{{ book.title }}</a></h3>
-            <p class="author">
-                {{ book.author.first_name }} {{ book.author.surname }}
-            </p>
+            <p class="author">{{ book.author.first_name }} {{ book.author.surname }}</p>
             <p class="price">{{ book.price }} ₽</p>
-            <button class="cart-btn">В корзину</button>
+            <button class="cart-btn" onclick="location.href='{% url 'cart' %}'">В корзину</button>
         </div>
         {% empty %}
         <div class="no-books">
-            <p>Книги не найдены</p>
+            <p>{% if search_query %}По запросу "{{ search_query }}" ничего не найдено{% else %}Книги не найдены{% endif %}</p>
+            {% if search_query %}
+            <a href="{% url 'main' %}" class="browse-btn">Показать все книги</a>
+            {% endif %}
         </div>
         {% endfor %}
     </div>

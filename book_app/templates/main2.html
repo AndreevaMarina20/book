@@ -18,7 +18,7 @@
             <p class="price">{{ book.price }} ₽</p>
             
             <div class="actions">
-                <button class="cart-btn-large">Добавить в корзину</button>
+                <button class="cart-btn-large" onclick="location.href='{% url 'add_to_cart' book.id %}'">Добавить в корзину</button>
             </div>
             
             <div class="book-meta">

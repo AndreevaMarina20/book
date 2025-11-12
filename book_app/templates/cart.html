@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="cart-page">
+    <h1 class="cart-title">🛒 Корзина</h1>
+    
+    <div class="empty-cart">
+        <div class="empty-cart-icon">🛒</div>
+        <h2>Корзина пуста</h2>
+        <p>Добавьте книги из каталога</p>
+        <a href="{% url 'main' %}" class="browse-btn">Перейти в каталог</a>
+    </div>
+</div>
+{% endblock %}

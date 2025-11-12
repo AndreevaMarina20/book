@@ -2,9 +2,7 @@ from django.db import models
 
 class Author(models.Model):
     first_name = models.CharField('Имя автора', max_length=20)
-    birthday = models.DateField(null=True, blank=True)
     surname = models.CharField("Фамилия", max_length=25)
-    bio = models.TextField("Биография")
 
     def __str__(self):
         return f"{self.first_name} {self.surname}" 
@@ -16,7 +14,6 @@ class Author(models.Model):
 
 class Genre(models.Model): 
     name = models.CharField('Название жанра', max_length=100)
-    description = models.TextField('Описание жанра') 
 
     def __str__(self):
         return f"{self.name}"
@@ -74,7 +71,7 @@ class Book(models.Model):
     description = models.TextField('Описание')  
     author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='Автор', default=0) 
     genres = models.ManyToManyField(Genre, verbose_name='Жанры') 
-    category = models.CharField('Категории', max_length=100, choices=ST)
+    category = models.CharField(max_length=100, null=True, blank=True, choices=ST)
     photo = models.ImageField(upload_to='books/', blank=True, null=True)
 
     def __str__(self):
