@@ -22,11 +22,11 @@
 <div class="category-section">
     <h2 class="category-title">
         {% if selected_category %}
-            📚 {{ selected_category }}
+             {{ selected_category }}
         {% elif search_query %}
-            🔍 Результаты поиска: "{{ search_query }}"
+             Результаты поиска: "{{ search_query }}"
         {% else %}
-            📚 Все книги
+             Все книги
         {% endif %}
         <span class="book-count">({{ books|length }})</span>
     </h2>
